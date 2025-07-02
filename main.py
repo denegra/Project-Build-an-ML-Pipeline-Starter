@@ -52,7 +52,7 @@ def go(config: DictConfig):
 
         if "basic_cleaning" in active_steps:
             _ = mlflow.run(
-                os.path.join(hyrda.utils.get_original_cwd(), 'src', 'basic_cleaning'),
+                f"{config['main']['src']}/basic_cleaning",
                 "main",
                 parameters={
                     'input_artifact': 'sample.csv:latest',
@@ -66,7 +66,7 @@ def go(config: DictConfig):
 
         if "data_check" in active_steps:
             _ = mlflow.run(
-                os.path.join(hyrda.utils.get_original_cwd(), 'src', 'data_check'),
+                 f"{config['main']['src']}/data_check",
                 "main",
                 parameters={
                     'csv': 'clean_sample.csv:latest',
@@ -79,7 +79,7 @@ def go(config: DictConfig):
 
         if "data_split" in active_steps:
             _ = mlflow.run(
-                os.path.join(hydra.utils.get_original_cwd(), 'components/train_val_test_split'),
+                f"{config['main']['components_repository']}/train_val_test_split",
                 'main',
                 parameters={
                     'input': 'clean_sample.csv:latest',
