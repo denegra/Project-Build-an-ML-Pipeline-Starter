@@ -91,6 +91,7 @@ def go(args):
 
 
     # Save the sk_pipe pipeline as a mlflow.sklearn model in the directory "random_forest_dir"
+    model_export_dir = "random_forest_dir"
     mlflow.sklearn.save_model(
         sk_model=sk_pipe,
         path=model_export_dir,
